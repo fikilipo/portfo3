@@ -1,0 +1,144 @@
+@property --window-glow {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --weather {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --sky-1: #6fa8d0;
+  --sky-2: #b3d2e5;
+  --sky-3: #e6e0c8;
+
+  --sun-x: 82%;
+  --sun-y: 22%;
+  --sun-r: 360px;
+  --sun-color: 255 246 220;
+  --sun-glow: 255 210 140;
+
+  --moon-x: 80%;
+  --moon-y: 18%;
+  --moon-r: 0px;
+
+  --wall-1: #d4cdbe;
+  --wall-2: #b3a896;
+  --wall-3: #8a7e6b;
+  --seam: rgba(28, 24, 18, 0.22);
+  --grain: rgba(255, 255, 255, 0.06);
+
+  --frame: #5a514a;
+  --frame-2: #2a261f;
+  --sash: #efe6d2;
+  --sill: #3a3329;
+
+  --pane-day: linear-gradient(165deg, #cfd6da 0%, #b0b9bd 50%, #8a949b 100%);
+  --pane-night: linear-gradient(165deg, #0a1322 0%, #050810 100%);
+
+  --glow-warm: 255 195 110;
+  --glow-cold: 130 200 255;
+  --glow-pink: 255 110 190;
+  --glow-green: 140 240 170;
+  --glow-violet: 180 140 255;
+  --glow-blue: 90 140 230;
+  --glow-amber: 255 160 80;
+
+  --window-glow: 0;
+  --weather: 0;
+
+  --plinth-1: #6a6052;
+  --plinth-2: #3e362c;
+
+  --paper: #f3eee2;
+  --ink: #1a1814;
+  --ink-2: #4a443b;
+
+  --neighbor-1: rgba(60, 60, 70, 0.4);
+  --neighbor-2: rgba(40, 40, 50, 0.5);
+
+  --mx: 0;
+  --my: 0;
+
+  color-scheme: light;
+}
+
+:root[data-time="dusk"] {
+  --sky-1: #2a1f3a;
+  --sky-2: #c66a4a;
+  --sky-3: #f0bd7a;
+
+  --sun-x: 84%;
+  --sun-y: 70%;
+  --sun-r: 380px;
+  --sun-color: 255 160 90;
+  --sun-glow: 255 110 60;
+
+  --moon-r: 0px;
+
+  --wall-1: #7a685c;
+  --wall-2: #4f4339;
+  --wall-3: #2c241d;
+  --seam: rgba(0, 0, 0, 0.42);
+  --grain: rgba(255, 220, 180, 0.03);
+
+  --frame: #2a221b;
+  --frame-2: #15110d;
+  --sash: #786857;
+
+  --pane-day: linear-gradient(165deg, #6a544a 0%, #3a2a22 100%);
+
+  --plinth-1: #3a322a;
+  --plinth-2: #1f1a14;
+
+  --neighbor-1: rgba(40, 25, 30, 0.55);
+  --neighbor-2: rgba(20, 12, 18, 0.7);
+
+  --window-glow: 0.55;
+  --weather: 0.35;
+}
+
+:root[data-time="night"] {
+  --sky-1: #050813;
+  --sky-2: #0a1228;
+  --sky-3: #16203a;
+
+  --sun-x: -20%;
+  --sun-y: -20%;
+  --sun-r: 0px;
+  --sun-color: 0 0 0;
+
+  --moon-x: 78%;
+  --moon-y: 16%;
+  --moon-r: 90px;
+
+  --wall-1: #2c2a27;
+  --wall-2: #1a1815;
+  --wall-3: #0c0b09;
+  --seam: rgba(0, 0, 0, 0.6);
+  --grain: rgba(255, 255, 255, 0.022);
+
+  --frame: #08070a;
+  --frame-2: #02020a;
+  --sash: #2c281e;
+
+  --pane-day: var(--pane-night);
+
+  --plinth-1: #1c1914;
+  --plinth-2: #0a0907;
+
+  --neighbor-1: rgba(8, 10, 18, 0.85);
+  --neighbor-2: rgba(4, 5, 10, 0.95);
+
+  --window-glow: 1;
+  --weather: 1;
+
+  color-scheme: dark;
+}
+
+:root {
+  transition: --window-glow 1200ms ease, --weather 1200ms ease;
+}

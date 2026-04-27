@@ -1,0 +1,317 @@
+@layer scene, building;
+
+@layer scene {
+  .stage {
+    position: relative;
+    z-index: 5;
+    padding: 96px 16px 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@layer building {
+  .building {
+    position: relative;
+    width: min(100%, 980px);
+    transform: translateX(calc(var(--mx) * 4px));
+    transition: transform 600ms cubic-bezier(.2,.7,.3,1);
+  }
+
+  .building__roof {
+    position: relative;
+    height: 70px;
+    margin: 0 -8px -2px;
+    z-index: 2;
+  }
+
+  .roof-edge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 14px;
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--frame) 100%, white 4%) 0%,
+      color-mix(in srgb, var(--frame) 100%, black 14%) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+      0 -2px 0 rgba(0, 0, 0, 0.5),
+      0 2px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .antenna {
+    position: absolute;
+    bottom: 14px;
+    width: 2px;
+    background: var(--frame);
+    transform-origin: bottom center;
+  }
+
+  .antenna::before,
+  .antenna::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: var(--frame);
+    border-radius: 1px;
+  }
+
+  .antenna--a {
+    left: 9%;
+    height: 56px;
+    animation: antenna-creak 7s ease-in-out infinite;
+  }
+  .antenna--a::before { width: 18px; left: -8px; top: 6px; }
+  .antenna--a::after  { width: 14px; left: -6px; top: 14px; }
+
+  .antenna--b {
+    left: 32%;
+    height: 70px;
+    animation: antenna-creak 9s ease-in-out -2s infinite;
+  }
+  .antenna--b::before { width: 24px; left: -11px; top: 4px; }
+  .antenna--b::after  { width: 18px; left: -8px; top: 16px; }
+
+  .antenna--c {
+    right: 26%;
+    height: 46px;
+  }
+  .antenna--c::before {
+    width: 8px; height: 8px; left: -3px; top: -8px;
+    background: #d33; border-radius: 50%;
+    box-shadow: 0 0 12px rgba(220, 70, 70, 0.9);
+    animation: flicker 2.4s steps(2) infinite;
+  }
+  .antenna--c::after { width: 16px; left: -7px; top: 10px; }
+
+  .dish {
+    position: absolute;
+    bottom: 14px;
+    left: 22%;
+    width: 28px;
+    height: 12px;
+    border-radius: 14px 14px 0 0;
+    border: 2px solid var(--frame);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .dish::before {
+    content: "";
+    position: absolute;
+    width: 2px; height: 14px;
+    bottom: -14px; left: 50%; margin-left: -1px;
+    background: var(--frame);
+  }
+
+  .chimney {
+    position: absolute;
+    right: 12%;
+    bottom: 14px;
+    width: 14px;
+    height: 50px;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--frame) 100%, black 0%),
+      color-mix(in srgb, var(--frame) 100%, black 24%));
+    border-radius: 2px;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .smoke-puff {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    left: 50%;
+    top: -2px;
+    margin-left: -6px;
+    background: rgba(255, 255, 255, 0.55);
+    filter: blur(3px);
+    opacity: 0;
+    animation: smoke-rise 5s ease-out infinite;
+  }
+  .smoke-puff--1 { animation-delay: 0s; }
+  .smoke-puff--2 { animation-delay: 1.6s; }
+  .smoke-puff--3 { animation-delay: 3.2s; }
+
+  .building__wall {
+    position: relative;
+    z-index: 1;
+    padding: 14px;
+    border-radius: 3px;
+    background:
+      radial-gradient(circle at 20% 35%, rgba(0, 0, 0, 0.06) 0 8px, transparent 9px),
+      radial-gradient(circle at 78% 62%, rgba(0, 0, 0, 0.05) 0 6px, transparent 7px),
+      radial-gradient(circle at 12% 88%, rgba(0, 0, 0, 0.06) 0 5px, transparent 6px),
+      repeating-linear-gradient(45deg,
+        var(--grain) 0 1px,
+        transparent 1px 4px),
+      linear-gradient(180deg,
+        var(--wall-1) 0%,
+        var(--wall-2) 55%,
+        var(--wall-3) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+      inset 8px 0 18px rgba(0, 0, 0, 0.18),
+      inset -8px 0 18px rgba(0, 0, 0, 0.18),
+      0 30px 80px -20px rgba(0, 0, 0, 0.6),
+      0 8px 24px -8px rgba(0, 0, 0, 0.45);
+  }
+
+  .building__wall::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg,
+        transparent 0 calc((100% - 14px * 2) / 6),
+        rgba(0, 0, 0, 0.18) calc((100% - 14px * 2) / 6) calc((100% - 14px * 2) / 6 + 1px));
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+  }
+
+  .building__wall::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 8% 20%, rgba(255, 220, 180, 0.04) 0 60px, transparent 80px),
+      radial-gradient(circle at 92% 80%, rgba(255, 220, 180, 0.03) 0 70px, transparent 90px);
+  }
+
+  .wall-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 14px 12px;
+    grid-template-areas:
+      "w01 w02  w03  w04  w05"
+      "w06 w07  stair w08 w09"
+      "w10 w11  stair w12 w13"
+      "w14 balc balc balc w15"
+      "w16 w17  w18  w19  w20"
+      "w21 w22  w23  w24  w25";
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(6, clamp(96px, 13.5vw, 144px));
+  }
+
+  @media (max-width: 640px) {
+    .wall-grid {
+      gap: 8px 8px;
+      grid-template-rows: repeat(6, clamp(72px, 16vw, 110px));
+    }
+  }
+
+  .balcony {
+    grid-area: balc;
+    position: relative;
+    border-radius: 2px;
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--wall-2) 100%, black 8%) 0%,
+        color-mix(in srgb, var(--wall-3) 100%, black 12%) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .balcony__back {
+    position: absolute;
+    inset: 0 0 24% 0;
+    background:
+      radial-gradient(ellipse at 50% 60%, rgba(255, 200, 130, calc(var(--window-glow) * 0.85)), transparent 70%),
+      linear-gradient(180deg, #1f1c17 0%, #0d0c08 100%);
+  }
+
+  .balcony__rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22%;
+    height: 60%;
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0 calc(100% / 22),
+        rgba(0, 0, 0, 0.7) calc(100% / 22) calc(100% / 22 + 2px),
+        transparent calc(100% / 22 + 2px) calc(100% / 11));
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .balcony__rail::before,
+  .balcony__rail::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(180deg, #2a241b, #14110b);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  .balcony__rail::before { top: 0; }
+  .balcony__rail::after  { bottom: 0; }
+
+  .balcony__line {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 14%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 3;
+  }
+
+  .balcony__laundry {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 14%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 3;
+  }
+
+  .balcony__laundry .laund {
+    display: block;
+    width: 11px;
+    border-radius: 0 0 4px 4px;
+    transform-origin: top center;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+    animation: laundry-sway 4.4s ease-in-out infinite;
+  }
+  .laund--1 { height: 26px; background: linear-gradient(180deg, #d6d0c2, #8a8478); animation-delay: -0.3s; }
+  .laund--2 { height: 22px; background: linear-gradient(180deg, #c44a3a, #5a1f15); animation-delay: -0.7s; width: 9px; }
+  .laund--3 { height: 30px; background: linear-gradient(180deg, #3a4a6a, #1a223a); animation-delay: -1.1s; width: 14px; }
+  .laund--4 { height: 18px; background: linear-gradient(180deg, #e8d36a, #8a7522); animation-delay: -1.5s; width: 8px; }
+  .laund--5 { height: 24px; background: linear-gradient(180deg, #2a3a2a, #0e1a0e); animation-delay: -1.9s; }
+  .laund--6 { height: 20px; background: linear-gradient(180deg, #d6d0c2, #6a6055); animation-delay: -2.3s; width: 9px; }
+
+  .balcony__floor {
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    bottom: 0;
+    height: 22%;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--frame) 100%, black 12%) 0%,
+      color-mix(in srgb, var(--frame) 100%, black 30%) 100%);
+    box-shadow:
+      inset 0 2px 0 rgba(0, 0, 0, 0.5),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+      0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .balcony__floor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg,
+      transparent 0 6px,
+      rgba(0, 0, 0, 0.25) 6px 7px);
+  }
+}

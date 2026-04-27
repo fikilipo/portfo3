@@ -1,0 +1,120 @@
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes flicker {
+  0%, 12%, 14%, 32%, 34%, 100% { opacity: 1; }
+  13%, 33% { opacity: 0.35; }
+  60% { opacity: 0.85; }
+}
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%, 97% { transform: scaleY(0.05); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes drop-fall {
+  0% { transform: translateY(-110%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+@keyframes smoke-rise {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0.55; }
+  100% { transform: translate(-22px, -120px) scale(1.6); opacity: 0; }
+}
+
+@keyframes glitch-x {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(3px, -1px); }
+  60% { transform: translate(-1px, 2px); }
+  80% { transform: translate(2px, 0); }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-110%); }
+  100% { transform: translateY(110%); }
+}
+
+@keyframes static-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes channel-shift {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(50deg); }
+}
+
+@keyframes garland-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+@keyframes pendulum {
+  0%, 100% { transform: rotate(-9deg); }
+  50% { transform: rotate(9deg); }
+}
+
+@keyframes fish-drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(220%, -10%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes ember {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 140, 40, 0.95); }
+  50% { box-shadow: 0 0 14px 4px rgba(255, 90, 20, 0.7); }
+}
+
+@keyframes laundry-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes antenna-creak {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes cloud-drift {
+  from { transform: translate3d(-10%, 0, 0); }
+  to { transform: translate3d(110%, 0, 0); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes weed-sway {
+  0%, 100% { transform: skewX(-4deg); }
+  50% { transform: skewX(4deg); }
+}
+
+@keyframes bg-flow {
+  to { background-position: 100% 0; }
+}
+
+@keyframes streetlamp-flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%, 98% { opacity: 0.6; }
+}

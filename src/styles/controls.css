@@ -1,0 +1,57 @@
+@layer ui {
+  .controls {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 60;
+  }
+
+  .control-pill {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.4);
+    border: 1px solid rgb(0 0 0 / 0.45);
+    backdrop-filter: blur(14px) saturate(1.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .control-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: rgb(255 255 255 / 0.7);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    transition: color 220ms ease, background 220ms ease;
+  }
+
+  .control-btn:hover { color: white; }
+
+  .control-btn.is-active {
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow:
+      inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+      0 4px 14px rgba(0, 0, 0, 0.25);
+  }
+
+  .control-btn kbd {
+    font-size: 9px;
+    opacity: 0.55;
+  }
+
+  @media (max-width: 540px) {
+    .controls { right: 12px; top: 12px; }
+    .control-btn { padding: 6px 10px; font-size: 10px; letter-spacing: 0.12em; }
+    .control-btn kbd { display: none; }
+  }
+}
