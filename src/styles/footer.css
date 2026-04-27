@@ -1,0 +1,54 @@
+@layer ui {
+  .site-foot {
+    background: #0c0a08;
+    color: rgb(243, 238, 226, 0.85);
+    padding: 48px 24px 56px;
+  }
+
+  .site-foot__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .site-foot__brand {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--paper);
+  }
+
+  .site-foot__sub {
+    margin: 0;
+    font-size: 13px;
+    color: rgb(243, 238, 226, 0.6);
+    max-width: 56ch;
+  }
+
+  .site-foot__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgb(243, 238, 226, 0.55);
+  }
+
+  .site-foot__meta a {
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(243, 238, 226, 0.4);
+  }
+
+  .site-foot__meta a:hover { border-color: var(--paper); }
+}

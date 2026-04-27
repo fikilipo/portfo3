@@ -1,0 +1,129 @@
+@layer ui {
+  .manifesto {
+    position: relative;
+    z-index: 5;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 96px 24px 72px;
+    margin-top: -1px;
+  }
+
+  .manifesto__inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 64px;
+  }
+
+  .manifesto__head {
+    grid-column: 1 / -1;
+    max-width: 920px;
+  }
+
+  .manifesto__kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+  }
+
+  .manifesto__title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 76px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin: 0 0 24px;
+  }
+
+  .manifesto__lead {
+    max-width: 56ch;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  .manifesto__cards {
+    grid-column: 1 / -1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    counter-reset: card;
+  }
+
+  .manifesto__cards li {
+    counter-increment: card;
+    border-top: 1px solid var(--ink);
+    padding-top: 18px;
+    position: relative;
+  }
+
+  .manifesto__cards li::before {
+    content: "0" counter(card);
+    position: absolute;
+    top: -10px;
+    right: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--paper);
+    padding: 0 6px;
+    color: var(--ink-2);
+  }
+
+  .manifesto__cards h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 18px;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .manifesto__cards p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  .manifesto__hot {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    border-top: 1px solid var(--ink);
+    padding-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .manifesto__hot kbd {
+    display: inline-block;
+    min-width: 18px;
+    text-align: center;
+    margin-right: 6px;
+    padding: 2px 6px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 3px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .manifesto { padding: 64px 20px 48px; }
+    .manifesto__cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .manifesto__cards { grid-template-columns: 1fr; }
+  }
+}

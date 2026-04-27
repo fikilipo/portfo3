@@ -1,0 +1,125 @@
+@layer scene {
+  .far-city {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22%;
+    height: 5%;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        var(--neighbor-2) 0%,
+        var(--neighbor-2) 4%,
+        transparent 4% 6%,
+        var(--neighbor-2) 6% 11%,
+        transparent 11% 13%,
+        var(--neighbor-2) 13% 19%,
+        transparent 19% 22%,
+        var(--neighbor-2) 22% 28%,
+        transparent 28% 31%,
+        var(--neighbor-2) 31% 37%,
+        transparent 37% 39%,
+        var(--neighbor-2) 39% 46%,
+        transparent 46% 49%,
+        var(--neighbor-2) 49% 55%,
+        transparent 55% 58%,
+        var(--neighbor-2) 58% 64%,
+        transparent 64% 67%,
+        var(--neighbor-2) 67% 73%,
+        transparent 73% 76%,
+        var(--neighbor-2) 76% 82%,
+        transparent 82% 85%,
+        var(--neighbor-2) 85% 92%,
+        transparent 92% 95%,
+        var(--neighbor-2) 95% 100%);
+    filter: blur(0.6px);
+    opacity: 0.7;
+    transform: translateX(calc(var(--mx) * -8px));
+    transition: filter 1200ms ease;
+  }
+
+  .neighbor {
+    position: absolute;
+    bottom: 18%;
+    pointer-events: none;
+    transform: translateX(calc(var(--mx) * -16px));
+    transition: filter 1200ms ease;
+    overflow: hidden;
+  }
+
+  .neighbor--left {
+    left: -4%;
+    width: 22%;
+    height: 46%;
+    background:
+      linear-gradient(180deg,
+        var(--neighbor-1) 0%,
+        var(--neighbor-2) 100%);
+    box-shadow:
+      inset 0 4px 0 rgba(0, 0, 0, 0.32),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.45),
+      inset 1px 0 0 rgba(0, 0, 0, 0.3),
+      inset -1px 0 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .neighbor--right {
+    right: -6%;
+    width: 18%;
+    height: 38%;
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--neighbor-1) 100%, black 4%) 0%,
+        color-mix(in srgb, var(--neighbor-2) 100%, black 6%) 100%);
+    box-shadow:
+      inset 0 4px 0 rgba(0, 0, 0, 0.32),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.45),
+      inset 1px 0 0 rgba(0, 0, 0, 0.3),
+      inset -1px 0 0 rgba(0, 0, 0, 0.3);
+  }
+
+  /* Tile of small dark window cells */
+  .neighbor::before {
+    content: "";
+    position: absolute;
+    inset: 12px 8px 24px;
+    background:
+      repeating-linear-gradient(0deg,
+        transparent 0 14px,
+        rgba(255, 255, 255, 0.04) 14px 22px,
+        transparent 22px 26px),
+      repeating-linear-gradient(90deg,
+        transparent 0 10px,
+        rgba(0, 0, 0, 0.3) 10px 12px,
+        transparent 12px 22px);
+    opacity: 0.85;
+  }
+
+  /* Hand-placed lit windows */
+  .neighbor::after {
+    content: "";
+    position: absolute;
+    inset: 12px 8px 24px;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(255, 195, 110, 0.95) 0 3px, transparent 4px),
+      radial-gradient(circle at 52% 22%, rgba(130, 200, 255, 0.85) 0 3px, transparent 4px),
+      radial-gradient(circle at 78% 16%, rgba(255, 195, 110, 0.85) 0 3px, transparent 4px),
+      radial-gradient(circle at 26% 38%, rgba(255, 195, 110, 0.9) 0 3px, transparent 4px),
+      radial-gradient(circle at 64% 42%, rgba(180, 140, 255, 0.8) 0 3px, transparent 4px),
+      radial-gradient(circle at 90% 36%, rgba(255, 195, 110, 0.7) 0 3px, transparent 4px),
+      radial-gradient(circle at 14% 58%, rgba(140, 240, 170, 0.85) 0 3px, transparent 4px),
+      radial-gradient(circle at 46% 56%, rgba(255, 195, 110, 0.85) 0 3px, transparent 4px),
+      radial-gradient(circle at 80% 62%, rgba(255, 110, 190, 0.8) 0 3px, transparent 4px),
+      radial-gradient(circle at 22% 76%, rgba(255, 195, 110, 0.95) 0 3px, transparent 4px),
+      radial-gradient(circle at 56% 80%, rgba(130, 200, 255, 0.7) 0 3px, transparent 4px),
+      radial-gradient(circle at 86% 84%, rgba(255, 195, 110, 0.85) 0 3px, transparent 4px),
+      radial-gradient(circle at 38% 92%, rgba(255, 195, 110, 0.7) 0 3px, transparent 4px);
+    filter: blur(0.4px);
+    opacity: var(--window-glow);
+    mix-blend-mode: screen;
+    transition: opacity 1200ms ease;
+  }
+
+  :root[data-time="day"] .neighbor { filter: brightness(1.05) saturate(0.85); }
+  :root[data-time="dusk"] .neighbor { filter: saturate(1.05); }
+  :root[data-time="night"] .neighbor { filter: contrast(1.05); }
+}
