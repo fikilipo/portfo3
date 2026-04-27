@@ -53,6 +53,18 @@
   --plinth-1: #6a6052;
   --plinth-2: #3e362c;
 
+  --walk-1: #b8b3a6;
+  --walk-2: #908a7d;
+  --walk-3: #6a6458;
+  --road-1: #2a2926;
+  --road-2: #1a1916;
+
+  --car-1: #b73a2e;
+  --car-2: #7a201a;
+
+  --tree-1: #56784a;
+  --tree-2: #3a5a30;
+
   --paper: #f3eee2;
   --ink: #1a1814;
   --ink-2: #4a443b;
@@ -94,6 +106,18 @@
   --plinth-1: #3a322a;
   --plinth-2: #1f1a14;
 
+  --walk-1: #5a4f44;
+  --walk-2: #3e342b;
+  --walk-3: #221c16;
+  --road-1: #14110c;
+  --road-2: #0a0806;
+
+  --car-1: #8a2a1f;
+  --car-2: #4a160f;
+
+  --tree-1: rgba(40, 50, 30, 0.6);
+  --tree-2: rgba(25, 32, 18, 0.7);
+
   --neighbor-1: rgba(40, 25, 30, 0.55);
   --neighbor-2: rgba(20, 12, 18, 0.7);
 
@@ -129,6 +153,18 @@
 
   --plinth-1: #1c1914;
   --plinth-2: #0a0907;
+
+  --walk-1: #1a1814;
+  --walk-2: #0c0a08;
+  --walk-3: #050403;
+  --road-1: #060504;
+  --road-2: #020201;
+
+  --car-1: #4a1a14;
+  --car-2: #1f0a06;
+
+  --tree-1: rgba(10, 14, 8, 0.85);
+  --tree-2: rgba(4, 6, 3, 0.95);
 
   --neighbor-1: rgba(8, 10, 18, 0.85);
   --neighbor-2: rgba(4, 5, 10, 0.95);

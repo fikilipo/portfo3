@@ -13,6 +13,8 @@
 @import "./styles/window.css";
 @import "./styles/window-types.css";
 @import "./styles/plinth.css";
+@import "./styles/ground.css";
+@import "./styles/kvartira.css";
 @import "./styles/manifesto.css";
 @import "./styles/footer.css";
 
