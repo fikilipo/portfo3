@@ -22,7 +22,7 @@ npm run dev
 npm run build
 ```
 
-`base` в [vite.config.ts](./vite.config.ts) выставлен в `/portfo3/`. Workflow `.github/workflows/deploy.yml` публикует `dist` на ветку `gh-pages` после пуша в `main`. Включите Pages в настройках репозитория (Source: GitHub Actions).
+`base` в [vite.config.ts](./vite.config.ts) выставлен в `/portfo3/`. Готовый workflow для GitHub Pages лежит в [infra/deploy.yml.example](./infra/deploy.yml.example) — скопируйте его в `.github/workflows/deploy.yml` и в настройках репозитория включите Pages с источником **GitHub Actions**.
 
 ## Управление
 
