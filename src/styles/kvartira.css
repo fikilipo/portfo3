@@ -1,0 +1,118 @@
+@layer ui {
+  .kvartira {
+    position: absolute;
+    z-index: 70;
+    left: 24px;
+    bottom: 24px;
+    width: min(360px, calc(100vw - 48px));
+    padding: 18px 22px 20px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 24px 64px -16px rgba(0, 0, 0, 0.55),
+      0 8px 24px -8px rgba(0, 0, 0, 0.35);
+    transform-origin: 30% bottom;
+    animation: toast-in 320ms cubic-bezier(.2,.7,.3,1.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .kvartira::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg,
+      rgb(var(--glow-warm)) 0%,
+      rgb(var(--glow-pink)) 50%,
+      rgb(var(--glow-violet)) 100%);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .kvartira__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 200ms ease;
+  }
+  .kvartira__close:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--ink);
+  }
+
+  .kvartira__row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .kvartira__num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .kvartira__floor {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding: 3px 8px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+  }
+
+  .kvartira__title {
+    margin: 0 0 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+
+  .kvartira__sub {
+    margin: 0 0 14px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-2);
+  }
+
+  .kvartira__meta {
+    display: flex;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 540px) {
+    .kvartira {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      width: auto;
+      padding: 14px 18px 16px;
+    }
+    .kvartira__num { font-size: 22px; }
+  }
+}

@@ -1,30 +1,12 @@
-type WindowKind =
-  | "tv"
-  | "marquee"
-  | "dark"
-  | "cat"
-  | "glitch"
-  | "curtains"
-  | "rain"
-  | "plant"
-  | "garland"
-  | "bulb"
-  | "aquarium"
-  | "smoke"
-  | "disco"
-  | "carpet"
-  | "crt"
-  | "boarded"
-  | "staircase";
-
-type GlowName = "warm" | "cold" | "pink" | "green" | "violet" | "blue" | "amber" | "off";
+import type { Slot, WindowKind, GlowName } from "./data";
+import { SLOTS } from "./data";
 
 const LABEL: Record<WindowKind, string> = {
   tv: "телевизор",
   marquee: "бегущая строка",
   dark: "тёмное окно",
   cat: "кот на подоконнике",
-  glitch: "глитч-надпись",
+  neon: "неоновая вывеска",
   curtains: "шторы",
   rain: "дождь за стеклом",
   plant: "комнатное растение",
@@ -37,7 +19,17 @@ const LABEL: Record<WindowKind, string> = {
   crt: "старый монитор",
   boarded: "заколоченное окно",
   staircase: "лестничная клетка",
+  minibalcony: "балкон с цветами",
 };
+
+const MARQUEE_LINES = [
+  "АРЕНДА КОМНАТЫ +7 999 123-45-67",
+  "ГРУЗОПЕРЕВОЗКИ ПО ГОРОДУ КРУГЛОСУТОЧНО",
+  "НАТЯЖНЫЕ ПОТОЛКИ ОТ 350 ЗА КВАДРАТ",
+  "СОБИРАЕМ МЕБЕЛЬ — НЕДОРОГО",
+];
+
+const NEON_WORDS = ["WI-FI", "АРЕНДА", "САЛОН", "БАР"];
 
 function pane(kind: WindowKind, seed: number) {
   switch (kind) {
@@ -50,17 +42,19 @@ function pane(kind: WindowKind, seed: number) {
           <div className="tv-logo">{seed % 2 === 0 ? "ОРТ" : "1×1"}</div>
         </div>
       );
-    case "marquee":
+    case "marquee": {
+      const text = MARQUEE_LINES[seed % MARQUEE_LINES.length] + " · ";
       return (
         <div className="pane pane--marquee">
           <div className="marquee-track">
-            <span>{seed % 2 === 0 ? "СПАЛЬНЫЙ РАЙОН СВОБОДЕН · ЦЕНТР ЗАНЯТ · " : "ВТОРНИК · ЧАЙ · ОКНО НА КУХНЕ · "}</span>
-            <span>{seed % 2 === 0 ? "СПАЛЬНЫЙ РАЙОН СВОБОДЕН · ЦЕНТР ЗАНЯТ · " : "ВТОРНИК · ЧАЙ · ОКНО НА КУХНЕ · "}</span>
-            <span>{seed % 2 === 0 ? "СПАЛЬНЫЙ РАЙОН СВОБОДЕН · ЦЕНТР ЗАНЯТ · " : "ВТОРНИК · ЧАЙ · ОКНО НА КУХНЕ · "}</span>
-            <span>{seed % 2 === 0 ? "СПАЛЬНЫЙ РАЙОН СВОБОДЕН · ЦЕНТР ЗАНЯТ · " : "ВТОРНИК · ЧАЙ · ОКНО НА КУХНЕ · "}</span>
+            <span>{text}</span>
+            <span>{text}</span>
+            <span>{text}</span>
+            <span>{text}</span>
           </div>
         </div>
       );
+    }
     case "dark":
       return <div className="pane pane--dark" />;
     case "cat":
@@ -78,15 +72,14 @@ function pane(kind: WindowKind, seed: number) {
           <div className="sill-shelf" />
         </div>
       );
-    case "glitch":
+    case "neon": {
+      const word = NEON_WORDS[seed % NEON_WORDS.length];
       return (
-        <div className="pane pane--glitch">
-          <div className="scanlines" />
-          <div className="glitch" data-text={seed % 2 === 0 ? "РУССКИЙ ДИЗАЙН" : "ПАНЕЛЬНЫЙ КОД"}>
-            {seed % 2 === 0 ? "РУССКИЙ ДИЗАЙН" : "ПАНЕЛЬНЫЙ КОД"}
-          </div>
+        <div className="pane pane--neon">
+          <span className="neon-word">{word}</span>
         </div>
       );
+    }
     case "curtains":
       return (
         <div className="pane pane--curtains">
@@ -99,7 +92,7 @@ function pane(kind: WindowKind, seed: number) {
     case "rain":
       return (
         <div className="pane pane--rain">
-          {Array.from({ length: 14 }, (_, i) => (
+          {Array.from({ length: 10 }, (_, i) => (
             <span key={i} className={`drop drop--${(i % 7) + 1}`} />
           ))}
           <div className="streaks" />
@@ -191,11 +184,11 @@ function pane(kind: WindowKind, seed: number) {
         <div className="pane pane--crt">
           <div className="crt-screen">
             <div className="crt-text">
-              &gt; ping panelka.code
+              &gt; ping ya.ru
               <br />
-              64 bytes from 127.0.0.1
+              64 bytes from 87.250.250.242
               <br />
-              time=18.2 ms ttl=64
+              time=18.2 ms ttl=54
               <br />
               &gt; _
             </div>
@@ -220,45 +213,19 @@ function pane(kind: WindowKind, seed: number) {
           <div className="stair-divider" />
         </div>
       );
+    case "minibalcony":
+      return (
+        <div className="pane pane--minibalc">
+          <div className="minibalc__back" />
+          <div className="minibalc__rail" />
+          <div className="minibalc__pot minibalc__pot--l" />
+          <div className="minibalc__pot minibalc__pot--r" />
+          <div className="minibalc__floor" />
+        </div>
+      );
   }
 }
 
-type Slot = { area: string; kind: WindowKind; glow: GlowName; seed: number };
-
-const SLOTS: Slot[] = [
-  { area: "w01", kind: "tv", glow: "cold", seed: 1 },
-  { area: "w02", kind: "marquee", glow: "warm", seed: 2 },
-  { area: "w03", kind: "dark", glow: "off", seed: 3 },
-  { area: "w04", kind: "cat", glow: "amber", seed: 4 },
-  { area: "w05", kind: "glitch", glow: "pink", seed: 5 },
-
-  { area: "w06", kind: "curtains", glow: "warm", seed: 6 },
-  { area: "w07", kind: "rain", glow: "blue", seed: 7 },
-  { area: "stair", kind: "staircase", glow: "cold", seed: 8 },
-  { area: "w08", kind: "plant", glow: "green", seed: 9 },
-  { area: "w09", kind: "garland", glow: "violet", seed: 10 },
-
-  { area: "w10", kind: "bulb", glow: "warm", seed: 11 },
-  { area: "w11", kind: "aquarium", glow: "cold", seed: 12 },
-  { area: "w12", kind: "dark", glow: "off", seed: 13 },
-  { area: "w13", kind: "tv", glow: "violet", seed: 14 },
-
-  { area: "w14", kind: "smoke", glow: "amber", seed: 15 },
-  { area: "balc", kind: "dark", glow: "warm", seed: 16 },
-  { area: "w15", kind: "disco", glow: "pink", seed: 17 },
-
-  { area: "w16", kind: "dark", glow: "warm", seed: 18 },
-  { area: "w17", kind: "carpet", glow: "warm", seed: 19 },
-  { area: "w18", kind: "crt", glow: "cold", seed: 20 },
-  { area: "w19", kind: "cat", glow: "warm", seed: 21 },
-  { area: "w20", kind: "marquee", glow: "cold", seed: 22 },
-
-  { area: "w21", kind: "bulb", glow: "warm", seed: 23 },
-  { area: "w22", kind: "glitch", glow: "violet", seed: 24 },
-  { area: "w23", kind: "tv", glow: "amber", seed: 25 },
-  { area: "w24", kind: "boarded", glow: "off", seed: 26 },
-  { area: "w25", kind: "plant", glow: "green", seed: 27 },
-];
 
 const GLOW_VAR: Record<GlowName, string> = {
   warm: "var(--glow-warm)",
@@ -271,7 +238,7 @@ const GLOW_VAR: Record<GlowName, string> = {
   off: "0 0 0",
 };
 
-function Window({ slot }: { slot: Slot }) {
+function Window({ slot, onSelect }: { slot: Slot; onSelect: (s: Slot) => void }) {
   const cssVars = {
     gridArea: slot.area,
     ["--glow" as string]: GLOW_VAR[slot.glow],
@@ -285,6 +252,7 @@ function Window({ slot }: { slot: Slot }) {
       aria-label={LABEL[slot.kind]}
       onClick={(e) => {
         e.currentTarget.classList.toggle("is-open");
+        onSelect(slot);
       }}
     >
       <div className="frame">
@@ -298,7 +266,7 @@ function Window({ slot }: { slot: Slot }) {
   );
 }
 
-export default function Building() {
+export default function Building({ onSelect }: { onSelect: (s: Slot) => void }) {
   return (
     <div className="building">
       <div className="building__roof">
@@ -312,15 +280,20 @@ export default function Building() {
           <span className="smoke-puff smoke-puff--2" />
           <span className="smoke-puff smoke-puff--3" />
         </span>
+        <div className="roof-sign">Дом 12</div>
       </div>
 
       <div className="building__wall">
         <div className="wall-grid">
           {SLOTS.map((slot) =>
             slot.area === "balc" ? (
-              <Balcony key="balc" slot={slot} />
+              <Balcony
+                key="balc"
+                slot={slot}
+                onClick={() => onSelect(slot)}
+              />
             ) : (
-              <Window key={slot.area} slot={slot} />
+              <Window key={slot.area} slot={slot} onSelect={onSelect} />
             )
           )}
         </div>
@@ -340,6 +313,15 @@ export default function Building() {
           <span className="bench__leg bench__leg--r" />
         </div>
         <div className="bin" />
+        <div className="shop">
+          <div className="shop__sign">
+            <span className="shop__sign-text">Продукты</span>
+            <span className="shop__sign-hours">24</span>
+          </div>
+          <div className="shop__glass">
+            <div className="shop__door" />
+          </div>
+        </div>
         <div className="streetlight">
           <span className="streetlight__pole" />
           <span className="streetlight__head" />
@@ -350,9 +332,15 @@ export default function Building() {
   );
 }
 
-function Balcony({ slot }: { slot: Slot }) {
+function Balcony({ slot, onClick }: { slot: Slot; onClick: () => void }) {
   return (
-    <div className="balcony" style={{ gridArea: slot.area }} aria-label="балкон с бельём">
+    <button
+      type="button"
+      className="balcony"
+      style={{ gridArea: slot.area }}
+      aria-label="балкон с бельём"
+      onClick={onClick}
+    >
       <div className="balcony__rail" />
       <div className="balcony__back" />
       <div className="balcony__line" />
@@ -365,6 +353,6 @@ function Balcony({ slot }: { slot: Slot }) {
         <span className="laund laund--6" />
       </div>
       <div className="balcony__floor" />
-    </div>
+    </button>
   );
 }
